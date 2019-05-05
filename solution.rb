@@ -15,12 +15,12 @@ post '/add' do
     redirect('/')
 end
 
-get '/update/:id' do
+patch '/update/:id' do
     Tarea.update(params[:id])
     redirect('/')
 end
 
-get '/delete/:id' do
+delete '/delete/:id' do
     Tarea.destroy(params[:id])
     redirect('/')
 end

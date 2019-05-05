@@ -2,8 +2,9 @@
 <ul>
     <li><a href="/add">Nueva tarea</a></li>
 </ul>
+<br>
+<h2>Tareas completadas</h2>
 <table>
-    <caption>Tareas completadas</caption>
     <thead>
         <tr>
             <th>Id</th>
@@ -20,7 +21,10 @@
             <td><%= x['title'] %></td>
             <td><%= x['done'] %></td>
             <td>
-                <a href="/delete/<%= x['id'] %>">Borrar</a>
+                 <form action="/delete/<%= x['id'] %>" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Borrar">
+                </form>
             </td>
         </tr>        
     <% end 
@@ -28,8 +32,8 @@
     </tbody>
 </table>
 <br>
+<h2>Tareas sin completar</h2>
 <table>
-    <caption>Tareas sin completar</caption>
     <thead>
         <tr>
             <th>Id</th>
@@ -46,8 +50,14 @@
             <td><%= x['title'] %></td>
             <td><%= x['done'] %></td>
             <td>
-                <a href="/update/<%= x['id'] %>">Completar</a>
-                <a href="/delete/<%= x['id'] %>">Borrar</a>
+                <form action="/update/<%= x['id'] %>" method="post">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <input type="submit" value="Completar">
+                </form>
+                <form action="/delete/<%= x['id'] %>" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Borrar">
+                </form>
             </td>
         </tr>
     <% end
