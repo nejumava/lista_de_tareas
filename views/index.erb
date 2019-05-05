@@ -1,0 +1,27 @@
+<h1>Proyecto Lista de Tareas</h1>
+<ul>
+    <li><a href="/add">Nueva tarea</a></li>
+</ul>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Done</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @tareas.each {|x| %>
+        <tr>
+            <td><%= x['id'] %></td>
+            <td><%= x['title'] %></td>
+            <td><%= x['done'] %></td>
+            <td>
+                <a href="/update/<%= x['id'] %>">Completar</a>
+                <a href="/delete/<%= x['id'] %>">Borrar</a>
+            </td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
