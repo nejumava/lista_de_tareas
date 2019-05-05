@@ -3,16 +3,44 @@
     <li><a href="/add">Nueva tarea</a></li>
 </ul>
 <table>
+    <caption>Tareas completadas</caption>
     <thead>
         <tr>
             <th>Id</th>
-            <th>Title</th>
-            <th>Done</th>
+            <th>Título</th>
+            <th>Realizado</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-    <% @tareas.each {|x| %>
+    <% @tareas.each {|x| 
+        if x['done'] %>
+        <tr>
+            <td><%= x['id'] %></td>
+            <td><%= x['title'] %></td>
+            <td><%= x['done'] %></td>
+            <td>
+                <a href="/delete/<%= x['id'] %>">Borrar</a>
+            </td>
+        </tr>        
+    <% end 
+    } %>
+    </tbody>
+</table>
+<br>
+<table>
+    <caption>Tareas sin completar</caption>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Título</th>
+            <th>Realizado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @tareas.each {|x|
+        if !x['done'] %>
         <tr>
             <td><%= x['id'] %></td>
             <td><%= x['title'] %></td>
@@ -22,6 +50,7 @@
                 <a href="/delete/<%= x['id'] %>">Borrar</a>
             </td>
         </tr>
-    <% } %>
+    <% end
+    } %>
     </tbody>
 </table>
